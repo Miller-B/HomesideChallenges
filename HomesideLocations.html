@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+       #map {
+           margin: auto;
+        height: 500px;
+        width: 80%;
+        
+       }
+    </style>
+  </head>
+  <body>
+    <h3>Homeside Financial Locations</h3>
+    <div id="map"></div>
+    <script>
+      function initMap() {
+          //Map options
+          var options = {
+              zoom:5,
+              center:{lat:39.8283459, lng:-98.6495175}
+          }
+          //New map
+          var map = new google.maps.Map(document.getElementById('map'), options);
+
+
+          var markers = [
+              {
+                coords:{lat:40.047751, lng:-82.912667},
+                content:'<h2>Columbus</h2><p>4249 Easton Way</p><p>Columbus, OH</p><p>43219</p>' 
+              },
+              {
+                 coords:{lat:30.666181, lng:-88.191233},
+                 content:'<h2>Mobile</h2><p>1110 Hillcrest Road</p><p>Mobile, AL</p><p>36695</p>' 
+              },
+              {
+                coords:{lat:27.968902, lng:-82.569540},
+                content:'<h2>Tampa</h2><p>3030 North Rocky Point Drive</p><p>Tampa, FL</p><p>33607</p>'
+              },
+              {
+                coords:{lat:33.596880, lng:-83.470703},
+                content:'<h2>Madison</h2><p>224 West Washington Street</p><p>Madison, GA</p><p>30650</p>'
+              },
+              {
+                coords:{lat:39.109130, lng:-77.190006},
+                content:'<h2>Rockville</h2><p>9211 Corporate Blvd</p><p>Rockville, MD</p><p>20850</p>'
+              },
+              {
+                coords:{lat:35.208801, lng:-80.855105},
+                content:'<h2>Charlotte</h2><p>1816 Lyndhurst Ave</p><p>Charlotte, NC</p><p>28203</p>'
+              },
+              {
+                coords:{lat:35.917412, lng:-78.961691},
+                content:'<h2>Durham</h2><p>7072 NC-751</p><p>Durham, NC</p><p>27713</p>'
+              },
+              {
+                coords:{lat:35.835630, lng:-78.689489},
+                content:'<h2>Raleigh</h2><p>4141 Parklake Ave</p><p>Raleigh, NC</p><p>27612</p>'
+              },
+              {
+                coords:{lat:41.3188565, lng:-81.6265887},
+                content:'<h2>Cleveland</h2><p>7570 Chippewa Road</p><p>Brecksville, OH</p><p>44141</p>'
+              },
+              {
+                coords:{lat:39.231147, lng:-84.3795506},
+                content:'<h2>Cincinnati</h2><p>9545 Kenwood Road</p><p>Cincinnati, OH</p><p>45242</p>'
+              },
+              {
+                coords:{lat:41.575425, lng:-81.4464541},
+                content:'<h2>Stow</h2><p>3226 Kent Road</p><p>Stow, OH</p><p>44224</p>'
+              },
+              {
+                coords:{lat:40.7871204, lng:-77.830171},
+                content:'<h2>State College</h2><p>320 Rolling Ridge Drive</p><p>State College, PA</p><p>16801</p>'
+              },
+              {
+                coords:{lat:38.8657718, lng:-77.3674235},
+                content:'<h2>Fairfax</h2><p>4000 Legato Road</p><p>Fairfax, VA</p><p>22033</p>'
+              },
+              {
+                coords:{lat:38.9555025, lng:-77.3665518},
+                content:'<h2>Reston</h2><p>12110 Sunset Hills Road</p><p>Reston, VA</p><p>20190</p>'
+              },
+
+
+
+
+
+
+
+          ];
+
+          //Loop through markers
+          for(var i = 0; i < markers.length; i++){
+              addMarker(markers[i]);
+          }
+
+
+
+          //add marker function
+          function addMarker(properties){
+            var marker = new google.maps.Marker({
+            position: properties.coords,
+            map:map
+          });
+
+          if(properties.content){
+            var infoWindow = new google.maps.InfoWindow({
+              content:properties.content
+          });
+          
+          marker.addListener('click', function(){
+              infoWindow.open(map, marker);
+          });
+              
+          }
+      }
+    }
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAOAajOGUO9qSjxNg6eI4wSD1lXRt0nMes&callback=initMap">
+    </script>
+  </body>
+</html>
